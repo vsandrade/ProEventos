@@ -1,18 +1,17 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { EventoService } from '@app/services/evento.service';
-import { Evento } from '@app/models/Evento';
-import { first } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
+import { EventoService } from './../../../services/evento.service';
+import { Evento } from './../../../models/Evento';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 
 @Component({
-  selector: 'app-eventos',
-  templateUrl: './eventos.component.html',
-  styleUrls: ['./eventos.component.scss'],
-  // providers: [EventoService]
+  selector: 'app-evento-lista',
+  templateUrl: './evento-lista.component.html',
+  styleUrls: ['./evento-lista.component.scss'],
 })
-export class EventosComponent implements OnInit {
+export class EventoListaComponent implements OnInit {
   modalRef: BsModalRef;
   public eventos: Evento[] = [];
   public eventosFiltrados: Evento[] = [];
@@ -28,14 +27,17 @@ export class EventosComponent implements OnInit {
 
   public set filtroLista(value: string) {
     this.filtroListado = value;
-    this.eventosFiltrados = this.filtroLista ? this.filtrarEventos(this.filtroLista) : this.eventos;
+    this.eventosFiltrados = this.filtroLista
+      ? this.filtrarEventos(this.filtroLista)
+      : this.eventos;
   }
 
   public filtrarEventos(filtrarPor: string): Evento[] {
     filtrarPor = filtrarPor.toLocaleLowerCase();
     return this.eventos.filter(
-      evento => evento.tema.toLocaleLowerCase().indexOf(filtrarPor) !== -1 ||
-      evento.local.toLocaleLowerCase().indexOf(filtrarPor) !== -1
+      (evento) =>
+        evento.tema.toLocaleLowerCase().indexOf(filtrarPor) !== -1 ||
+        evento.local.toLocaleLowerCase().indexOf(filtrarPor) !== -1
     );
   }
 
@@ -43,8 +45,9 @@ export class EventosComponent implements OnInit {
     private eventoService: EventoService,
     private modalService: BsModalService,
     private toastr: ToastrService,
-    private spinner: NgxSpinnerService
-  ) { }
+    private spinner: NgxSpinnerService,
+    private router: Router
+  ) {}
 
   public ngOnInit(): void {
     this.spinner.show();
@@ -56,9 +59,7 @@ export class EventosComponent implements OnInit {
   }
 
   public getEventos(): void {
-    this.eventoService.getEventos()
-    .pipe(first())
-    .subscribe({
+    this.eventoService.getEventos().subscribe({
       next: (eventos: Evento[]) => {
         this.eventos = eventos;
         this.eventosFiltrados = this.eventos;
@@ -67,12 +68,13 @@ export class EventosComponent implements OnInit {
         this.spinner.hide();
         this.toastr.error('Erro ao Carregar os Eventos', 'Erro!');
       },
-      complete: () => this.spinner.hide()
+      complete: () => this.spinner.hide(),
     });
   }
 
-  openModal(template: TemplateRef<any>): void {
-    this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
+  openModal(event: any, template: TemplateRef<any>): void {
+    event.stopPropagation();
+    this.modalRef = this.modalService.show(template, { class: 'modal-sm modal-dialog-centered' });
   }
 
   confirm(): void {
@@ -84,4 +86,7 @@ export class EventosComponent implements OnInit {
     this.modalRef.hide();
   }
 
+  detalhesEvento(): void {
+    this.router.navigate(['eventos/detalhe']);
+  }
 }

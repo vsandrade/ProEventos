@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -18,13 +18,19 @@ import { ContatosComponent } from './components/contatos/contatos.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { EventosComponent } from './components/eventos/eventos.component';
 import { PalestrantesComponent } from './components/palestrantes/palestrantes.component';
-import { PerfilComponent } from './components/perfil/perfil.component';
+import { PerfilComponent } from './components/user/perfil/perfil.component';
 import { NavComponent } from './shared/nav/nav.component';
 import { TituloComponent } from './shared/titulo/titulo.component';
+import { RegistrationComponent } from './components/user/registration/registration.component';
+import { LoginComponent } from './components/user/login/login.component';
+import { UserService } from './services/user.service';
 
 import { EventoService } from './services/evento.service';
 
 import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
+import { UserComponent } from './components/user/user.component';
+import { EventoListaComponent } from './components/eventos/evento-lista/evento-lista.component';
+import { EventoDetalheComponent } from './components/eventos/evento-detalhe/evento-detalhe.component';
 
 
 @NgModule({
@@ -37,7 +43,12 @@ import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
     PerfilComponent,
     NavComponent,
     TituloComponent,
-    DateTimeFormatPipe
+    LoginComponent,
+    RegistrationComponent,
+    UserComponent,
+    DateTimeFormatPipe,
+    EventoListaComponent,
+    EventoDetalheComponent
   ],
   imports: [
     BrowserModule,
@@ -55,10 +66,12 @@ import { DateTimeFormatPipe } from './helpers/DateTimeFormat.pipe';
       preventDuplicates: true,
       progressBar: true
     }),
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    ReactiveFormsModule
   ],
   providers: [
-    EventoService
+    EventoService,
+    UserService
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
