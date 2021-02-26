@@ -5,7 +5,7 @@
         <div class="form-group col-md-12">
           <label>Tema</label>
           <input type="text" class="form-control" [ngClass]="{'is-invalid': f.tema.errors && f.tema.touched}"
-            formControlName="tema" placeholder="Insira o Tema">
+          formControlName="tema" placeholder="Insira o Tema">
           <div *ngIf="f.tema.errors?.required && f.tema.touched" class="invalid-feedback">
             Tema é obrigatório.
           </div>
@@ -21,7 +21,7 @@
         <div class="form-group col-md-8">
           <label>Local</label>
           <input type="text" class="form-control" [ngClass]="{'is-invalid': f.local.errors && f.local.touched}"
-            formControlName="local" placeholder="">
+          formControlName="local" placeholder="">
           <div *ngIf="f.local.errors?.required && f.local.touched" class="invalid-feedback">
             Local é obrigatório.
           </div>
@@ -29,8 +29,8 @@
         <div class="form-group col-md-4">
           <label>Data e Hora</label>
           <input type="datetime" class="form-control"
-            [ngClass]="{'is-invalid': f.dataEvento.errors && f.dataEvento.touched}" formControlName="dataEvento"
-            placeholder="">
+          [ngClass]="{'is-invalid': f.dataEvento.errors && f.dataEvento.touched}" formControlName="dataEvento"
+          placeholder="">
           <div *ngIf="f.dataEvento.errors?.required && f.dataEvento.touched" class="invalid-feedback">
             Data e hora é obrigatório.
           </div>
@@ -40,7 +40,7 @@
         <div class="form-group col-md-2">
           <label>Qtd Pessoas</label>
           <input type="text" [ngClass]="{'is-invalid': f.qtdPessoas.errors && f.qtdPessoas.touched}"
-            class="form-control is-invalid" formControlName="qtdPessoas" placeholder="">
+          class="form-control is-invalid" formControlName="qtdPessoas" placeholder="">
           <div *ngIf="f.qtdPessoas.errors?.required && f.qtdPessoas.touched" class="invalid-feedback">
             Qtd Pessoas é obrigatório.
           </div>
@@ -51,8 +51,8 @@
         <div class="form-group col-md-4">
           <label>Telefone</label>
           <input type="text" mask="(000) 0000-0000" class="form-control"
-            [ngClass]="{'is-invalid': f.telefone.errors && f.telefone.touched}" formControlName="telefone"
-            placeholder="(000) 90000-0000">
+          [ngClass]="{'is-invalid': f.telefone.errors && f.telefone.touched}" formControlName="telefone"
+          placeholder="(000) 90000-0000">
           <div *ngIf="f.telefone.errors?.required && f.telefone.touched" class="invalid-feedback">
             Telefone é obrigatório.
           </div>
@@ -60,7 +60,7 @@
         <div class="form-group col-md-6">
           <label>Email</label>
           <input type="text" class="form-control" [ngClass]="{'is-invalid': f.email.errors && f.email.touched}"
-            formControlName="email" placeholder="e-mail">
+          formControlName="email" placeholder="e-mail">
           <div *ngIf="f.email.errors?.required && f.email.touched" class="invalid-feedback">
             Email é obrigatório.
           </div>
@@ -93,70 +93,71 @@
         <i class="fas fa-money-bill-wave"></i>
       </h2>
     </div>
-    <p class="mt-2 mb-3">Clique em Adicionar para preencher as informações dos Lotes</p>
+    <p>Clique em Lote para adicionar e preencher novos Lotes</p>
     <div class="form-row p-1">
       <form [formGroup]="form" class="col">
         <div formArrayName="lotes" *ngFor="let lote of lotes.controls; let i=index">
           <fieldset [formGroupName]="i" class="form-group">
             <legend class="d-flex justify-content-between capitalize">
               {{
-              lotes.get(i+'.nome').value === null || lotes.get(i+'.nome').value === ''
-              ? 'Nome do Lote'
-              : lotes.get(i+'.nome').value
+                lotes.get(i+'.nome').value === null || lotes.get(i+'.nome').value === ''
+                ? 'Nome do Lote'
+                : lotes.get(i+'.nome').value
               }}
-              <button (click)="removerLote(i)" class="p-2 btn btn-sm btn-outline-warning mb-1 d-flex">
-                <i class="fa fa-window-close my-1"></i>
-                <b class="ml-1 d-none d-sm-block">Excluir</b>
-              </button>
-            </legend>
-            <div class="row">
-              <div class="form-group col-md-4">
-                <label>Nome</label>
-                <input type="text" class="form-control"
-                  [ngClass]="{'is-invalid': lotes.get(i+'.nome').errors && lotes.get(i+'.nome').touched}"
-                  formControlName="nome" placeholder="Lote">
-              </div>
-              <div class="form-group col-md-4">
-                <label>Quantidade</label>
-                <input type="text" class="form-control"
-                  [ngClass]="{'is-invalid': lotes.get(i+'.quantidade').errors && lotes.get(i+'.quantidade').touched}"
-                  formControlName="quantidade" placeholder="000">
-              </div>
-              <div class="form-group col-md-4">
-                <label>Preço</label>
-                <input type="text" currencyMask class="form-control"
-                  [ngClass]="{'is-invalid': lotes.get(i+'.preco').errors && lotes.get(i+'.preco').touched}"
-                  formControlName="preco" placeholder="R$ 0,00">
-              </div>
-              <div class="form-group col-md-4">
-                <label>Data Início</label>
-                <input type="text" class="form-control" formControlName="dataInicio" placeholder="01/01/2019">
-              </div>
-              <div class="form-group col-md-4">
-                <label>Data Fim</label>
-                <input type="text" class="form-control" formControlName="dataFim" placeholder="01/01/2019">
-              </div>
+              <button (click)="removerLote(i)" class="p-2 btn btn-sm btn-outline-warning mb-1 d-flex" tooltip="Excluir Lote"
+                [adaptivePosition]="false" placement="left" [delay]="500">
+              <i class="fa fa-window-close my-1"></i>
+              <b class="ml-1 d-none d-sm-block">Excluir</b>
+            </button>
+          </legend>
+          <div class="row">
+            <div class="form-group col-md-4">
+              <label>Nome</label>
+              <input type="text" class="form-control"
+              [ngClass]="{'is-invalid': lotes.get(i+'.nome').errors && lotes.get(i+'.nome').touched}"
+              formControlName="nome" placeholder="Lote">
             </div>
-          </fieldset>
-        </div>
-      </form>
-    </div>
-    <button (click)="adicionarLote()" class="d-flex btn btn-outline-primary">
-      <i class="fa fa-plus-circle my-1"></i>
-      <b class="ml-1 d-none d-sm-block">Adicionar Lote</b>
+            <div class="form-group col-md-4">
+              <label>Quantidade</label>
+              <input type="text" class="form-control"
+              [ngClass]="{'is-invalid': lotes.get(i+'.quantidade').errors && lotes.get(i+'.quantidade').touched}"
+              formControlName="quantidade" placeholder="000">
+            </div>
+            <div class="form-group col-md-4">
+              <label>Preço</label>
+              <input type="text" currencyMask class="form-control"
+              [ngClass]="{'is-invalid': lotes.get(i+'.preco').errors && lotes.get(i+'.preco').touched}"
+              formControlName="preco" placeholder="R$ 0,00">
+            </div>
+            <div class="form-group col-md-4">
+              <label>Data Início</label>
+              <input type="text" class="form-control" formControlName="dataInicio" placeholder="01/01/2019">
+            </div>
+            <div class="form-group col-md-4">
+              <label>Data Fim</label>
+              <input type="text" class="form-control" formControlName="dataFim" placeholder="01/01/2019">
+            </div>
+          </div>
+        </fieldset>
+      </div>
+    </form>
+  </div>
+  <button (click)="adicionarLote()" class="d-flex btn btn-outline-primary">
+    <i class="fa fa-plus-circle my-1"></i>
+    <b class="ml-1">Lote</b>
+  </button>
+</div>
+<div class="card-footer">
+  <div class="d-flex">
+    <button (click)="resetForm($event)" class="btn btn-outline-secondary mr-auto border">
+      Cancelar Alteração
+    </button>
+    <button [disabled]="loading" class="btn btn-success">
+      <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+      Salvar Lotes
     </button>
   </div>
-  <div class="card-footer">
-    <div class="d-flex">
-      <button (click)="resetForm($event)" class="btn btn-outline-secondary mr-auto border">
-        Cancelar Alteração
-      </button>
-      <button [disabled]="loading" class="btn btn-success">
-        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-        Salvar Lotes
-      </button>
-    </div>
-  </div>
+</div>
 </div>
 
 <div class="card rounded shadow-sm mt-4" *ngIf="modoEditar">
@@ -169,66 +170,73 @@
         <i class="fa fa-user-friends"></i>
       </h2>
     </div>
-    <p>Clique em Adicionar para preencher as informações das Redes Sociais</p>
+    <p>Clique em Rede Social para adicionar e preencher novas Redes Sociais</p>
     <div class="form-row p-1">
       <form [formGroup]="form" class="col">
         <div formArrayName="redesSociais" *ngFor="let redeSocial of redesSociais.controls; let j=index">
           <fieldset [formGroupName]="j" class="form-group">
-            <legend class="d-flex justify-content-between capitalize">
-              {{ redesSociais.get(j+'.nome').value === '' || redesSociais.get(j+'.nome').value === null ?
-              'Redes Sociais' :
-              redesSociais.get(j+'.nome').value?.replace('fab fa-', '')
-              }}
-              <button (click)="removerRedeSocial(j)" class="p-2 btn btn-sm btn-outline-warning mb-1 d-flex">
-                <i class="fa fa-window-close my-1"></i>
-                <b class="ml-1 d-none d-sm-block">Excluir</b>
-              </button>
-            </legend>
-            <div class="row">
-              <div class="form-group col-md-4">
-                <label>Nome</label>
-                <select class="form-control"
-                  [ngClass]="{'is-invalid': redesSociais.get(j+'.nome').errors && redesSociais.get(j+'.nome').touched}"
-                  formControlName="nome">
-                  <option value="">Selecione</option>
-                  <option value="fab fa-youtube">Youtube</option>
-                  <option value="fab fa-instagram">Instagram</option>
-                  <option value="fab fa-facebook">Facebook</option>
-                  <option value="fab fa-twitter">Twitter</option>
-                  <option value="fab fa-google">Google</option>
-                  <option value="fab fa-linkedin">Linkedin</option>
-                  <option value="fab fa-pinterest">Pinterest</option>
-                  <option value="fab fa-whatsapp">Whatsapp</option>
-                  <option value="fab fa-telegram">Telegram</option>
-                  <option value="fab fa-skype">Skype</option>
-                  <option value="fab fa-vimeo">Vimeo</option>
-                </select>
+            <legend class="d-flex capitalize">
+              <div class="mr-auto align-self-center">
+                <i class="iconesSociais mr-2 {{redesSociais.get(j+'.nome').value}}"></i>
+                <label>
+                  {{
+                    redesSociais.get(j+'.nome').value === '' || redesSociais.get(j+'.nome').value === null
+                      ? 'Redes Sociais'
+                      : redesSociais.get(j+'.nome').value?.replace('fab fa-', '')
+                  }}
+                </label>
               </div>
-              <div class="form-group col-md-8">
-                <label>Link</label>
-                <input type="text" prefix="http://" mask=""
-                  [ngClass]="{'is-invalid': redesSociais.get(j+'.url').errors && redesSociais.get(j+'.url').touched}"
-                  formControlName="url" class="form-control" placeholder="URL">
-              </div>
-            </div>
-          </fieldset>
+            <button (click)="removerRedeSocial(j)" class="p-2 btn btn-sm btn-outline-warning mb-1 d-flex"
+              tooltip="Excluir Rede Social" [adaptivePosition]="false" placement="left" [delay]="500">
+            <i class="fa fa-window-close my-1"></i>
+            <b class="ml-1 d-none d-sm-block">Excluir</b>
+          </button>
+        </legend>
+        <div class="row">
+          <div class="form-group col-md-4">
+            <label>Nome</label>
+            <select class="form-control"
+            [ngClass]="{'is-invalid': redesSociais.get(j+'.nome').errors && redesSociais.get(j+'.nome').touched}"
+            formControlName="nome">
+            <option value="">Selecione</option>
+            <option value="fab fa-youtube">Youtube</option>
+            <option value="fab fa-instagram">Instagram</option>
+            <option value="fab fa-facebook">Facebook</option>
+            <option value="fab fa-twitter">Twitter</option>
+            <option value="fab fa-google">Google</option>
+            <option value="fab fa-linkedin">Linkedin</option>
+            <option value="fab fa-pinterest">Pinterest</option>
+            <option value="fab fa-whatsapp">Whatsapp</option>
+            <option value="fab fa-telegram">Telegram</option>
+            <option value="fab fa-skype">Skype</option>
+            <option value="fab fa-vimeo">Vimeo</option>
+          </select>
         </div>
-      </form>
-    </div>
-    <button (click)="adicionarRedeSocial()" class="d-flex btn btn-outline-primary">
-      <i class="fa fa-plus-circle my-1"></i>
-      <b class="ml-1 d-none d-sm-block">Adicionar Redes Sociais</b>
+        <div class="form-group col-md-8">
+          <label>Link</label>
+          <input type="text" prefix="http://" mask=""
+          [ngClass]="{'is-invalid': redesSociais.get(j+'.url').errors && redesSociais.get(j+'.url').touched}"
+          formControlName="url" class="form-control" placeholder="URL">
+        </div>
+      </div>
+    </fieldset>
+  </div>
+</form>
+</div>
+<button (click)="adicionarRedeSocial()" class="d-flex btn btn-outline-primary">
+  <i class="fa fa-plus-circle my-1"></i>
+  <b class="ml-1"> Rede Social</b>
+</button>
+</div>
+<div class="card-footer">
+  <div class="d-flex">
+    <button (click)="resetForm($event)" class="btn btn-outline-secondary mr-auto border">
+      Cancelar Alteração
+    </button>
+    <button [disabled]="loading" class="btn btn-success">
+      <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+      Salvar Redes Sociais
     </button>
   </div>
-  <div class="card-footer">
-    <div class="d-flex">
-      <button (click)="resetForm($event)" class="btn btn-outline-secondary mr-auto border">
-        Cancelar Alteração
-      </button>
-      <button [disabled]="loading" class="btn btn-success">
-        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-        Salvar Redes Sociais
-      </button>
-    </div>
-  </div>
+</div>
 </div>
