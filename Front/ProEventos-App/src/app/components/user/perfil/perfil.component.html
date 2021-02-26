@@ -15,6 +15,7 @@
             <option value="Senhorita">Pós Graduado(a)</option>
             <option value="Senhorita">Mestre</option>
             <option value="Senhorita">Doutor(a)</option>
+            <option value="Senhorita">Pós Doc</option>
           </select>
           <div *ngIf="submitted && f.titulo.errors" class="invalid-feedback">
             <div *ngIf="f.titulo.errors.required">Título é obrigatório</div>
@@ -60,8 +61,8 @@
           <select formControlName="funcao" class="form-control"
             [ngClass]="{ 'is-invalid': submitted && f.funcao.errors }">
             <option value=""></option>
-            <option value="User">Usuário</option>
-            <option value="Admin">Administrador</option>
+            <option value="Participante">Participante</option>
+            <option value="Palestrante">Palestrante</option>
           </select>
           <div *ngIf="submitted && f.funcao.errors" class="invalid-feedback">
             <div *ngIf="f.funcao.errors.required">função é obrigatório é obrigatório</div>
@@ -95,7 +96,7 @@
     </div>
     <div class="card-footer">
       <div class="d-flex">
-        <button (click)="resetForm()" class="btn btn-outline-secondary mr-auto border">
+        <button (click)="resetForm($event)" class="btn btn-outline-secondary mr-auto border">
           Cancelar Alteração
         </button>
         <button [disabled]="loading" class="btn btn-success">

@@ -87,6 +87,6 @@ export class EventoListaComponent implements OnInit {
   }
 
   detalhesEvento(): void {
-    this.router.navigate(['eventos/detalhe']);
+    this.router.navigate(['eventos/detalhe/1']);
   }
 }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControlOptions, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { first } from 'rxjs/operators';
 
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -35,7 +34,7 @@ export class PerfilComponent implements OnInit {
       const formOptions: AbstractControlOptions = {
         validators: ValidatorField.MustMatch('senha', 'confirmeSenha')
       };
-      
+
       this.form = this.fb.group({
         titulo: ['', Validators.required],
         primeiroNome: ['', Validators.required],
@@ -48,7 +47,6 @@ export class PerfilComponent implements OnInit {
       }, formOptions);
 
       this.userService.getById(this.id)
-      .pipe(first())
       // tslint:disable-next-line: deprecation
       .subscribe((x: any) => this.form.patchValue(x));
     }
@@ -70,7 +68,6 @@ export class PerfilComponent implements OnInit {
 
     private createUser(): void {
       this.userService.create(this.form.value)
-      .pipe(first())
       // tslint:disable-next-line: deprecation
       .subscribe(() => {
         this.toastr.success('Usuário Cadastrado');
@@ -79,13 +76,14 @@ export class PerfilComponent implements OnInit {
       .add(() => this.loading = false);
     }
 
-    public resetForm(): void {
-      this.form.reset(this.form.value);
+    public resetForm(event: any): void {
+      event.preventDefault();
+      this.submitted = false;
+      this.form.reset();
     }
 
     private updateUser(): void {
       this.userService.update(this.id, this.form.value)
-      .pipe(first())
       // tslint:disable-next-line: deprecation
       .subscribe(() => {
         this.toastr.success('Atualização realizada com Sucesso');
