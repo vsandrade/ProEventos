@@ -1,3 +1,4 @@
+using System;
 using AutoMapper;
 using ProEventos.Application.Dtos;
 using ProEventos.Domain;

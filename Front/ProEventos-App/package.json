@@ -23,6 +23,7 @@
     "bootstrap": "^4.6.0",
     "bootswatch": "^4.6.0",
     "ngx-bootstrap": "^6.2.0",
+    "ngx-currency": "^2.5.2",
     "ngx-spinner": "^10.0.1",
     "ngx-toastr": "^13.2.0",
     "rxjs": "~6.5.5",
