@@ -47,7 +47,7 @@
       <td class="d-none d-md-table-cell">
         <img [collapse]="!exibirImagem"
         [isAnimated]="true"
-        src="/assets/{{evento.imagemURL}}"
+        [src]="mostraImagem(evento.imagemURL)"
         [style.width.px]="larguraImagem"
         [style.margin.px]="margemImagem"
         >
