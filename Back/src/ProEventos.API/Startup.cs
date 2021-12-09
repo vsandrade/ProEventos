@@ -22,6 +22,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.Collections.Generic;
+using ProEventos.Api.Helpers;
 
 namespace ProEventos.API
 {
@@ -41,7 +42,7 @@ namespace ProEventos.API
                 context => context.UseSqlite(Configuration.GetConnectionString("Default"))
             );
 
-            services.AddIdentityCore<User>(options => 
+            services.AddIdentityCore<User>(options =>
             {
                 options.Password.RequireDigit = false;
                 options.Password.RequireNonAlphanumeric = false;
@@ -69,7 +70,7 @@ namespace ProEventos.API
                     });
 
             services.AddControllers()
-                    .AddJsonOptions(options => 
+                    .AddJsonOptions(options =>
                         options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter())
                     )
                     .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling =
@@ -82,11 +83,16 @@ namespace ProEventos.API
             services.AddScoped<ILoteService, LoteService>();
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IPalestranteService, PalestranteService>();
+            services.AddScoped<IRedeSocialService, RedeSocialService>();
+            services.AddScoped<IUtil, Util>();
 
             services.AddScoped<IGeralPersist, GeralPersist>();
             services.AddScoped<IEventoPersist, EventoPersist>();
             services.AddScoped<ILotePersist, LotePersist>();
             services.AddScoped<IUserPersist, UserPersist>();
+            services.AddScoped<IPalestrantePersist, PalestrantePersist>();
+            services.AddScoped<IRedeSocialPersist, RedeSocialPersist>();
 
             services.AddCors();
             services.AddSwaggerGen(options =>
@@ -103,7 +109,7 @@ namespace ProEventos.API
                     Scheme = "Bearer"
                 });
 
-                options.AddSecurityRequirement(new OpenApiSecurityRequirement() 
+                options.AddSecurityRequirement(new OpenApiSecurityRequirement()
                 {
                     {
                         new OpenApiSecurityScheme
