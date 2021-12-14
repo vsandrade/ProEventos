@@ -1,22 +1,25 @@
-<app-titulo [titulo]="'Perfil'" [iconClass]="'fa fa-address-card'"></app-titulo>
+<app-titulo [titulo]="'Perfil' + (ehPalestrante ? ' Palestrante' : '')" [iconClass]="'fa fa-address-card'"></app-titulo>
 <div class="card rounded shadow-sm">
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
     <div class="row p-3">
       <div class="col-lg-3 pt-1">
         <div class="card mb-3">
-          <div class="card-header"></div>
+          <div class="card-header">
+            <input type="file" #file (change)="onFileChange($event)" style="display: none;">
+          </div>
           <div class="d-flex align-self-center pt-3">
-            <a href="#aboutModal" data-toggle="modal" data-target="#myModal">
               <img
-              src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRbezqZpEuwGSvitKy3wrwnth5kysKdRqBW54cAszm_wiutku3R"
-              name="aboutme" width="120" height="120" class="rounded-circle">
-            </a>
+              [src]="imagemURL"
+              class="rounded-circle"
+              (click)="file.click()"
+              name="aboutme" width="120" height="120"
+              style="cursor: pointer;">
           </div>
           <div class="card-body">
-            <div class="h4 text-center mb-3">@{{f.userName.value}}</div>
-            <div class="h7 text-bold pb-1"><b>Nome:</b> {{f.primeiroNome.value + ' ' + f.ultimoNome.value}}</div>
+            <div class="h4 text-center mb-3">@{{usuario.userName}}</div>
+            <div class="h7 text-bold pb-1"><b>Nome:</b> {{usuario.primeiroNome + ' ' + usuario.ultimoNome}}</div>
             <div class="h7">
-              {{f.descricao.value}}
+              {{usuario.descricao}}
             </div>
           </div>
           <ul class="list-group list-group-flush">
@@ -28,7 +31,7 @@
                 </div>
                 <div class="col-6 text-center">
                   <div class="h5">0</div>
-                  <div class="h6 text-muted">Eventos como Participante</div>
+                  <div class="h6 text-muted">Eventos como {{ehPalestrante ? ' Palestrante' : 'Participante'}}</div>
                 </div>
               </div>
             </li>
@@ -37,118 +40,36 @@
         </div>
       </div>
       <div class="col-lg-9">
-        <div class="form-row">
-          <div class="form-group col-12">
-            <h3 class="border-bottom">Detalhe Perfil</h3>
-          </div>
-          <div class="form-group col">
-            <label>Título</label>
-            <select formControlName="titulo" class="form-control"
-            [ngClass]="{ 'is-invalid': f.titulo.errors && f.titulo.touched }">
-            <option value="NaoInformado">Não Quero</option>
-            <option value="Tecnologo">Tecnólogo(a)</option>
-            <option value="Bacharel">Bacharel</option>
-            <option value="Especialista">Especialista</option>
-            <option value="PosGraduado">Pós Graduado(a)</option>
-            <option value="Mestrado">Mestre</option>
-            <option value="Doutorado">Doutor(a)</option>
-            <option value="PosDoutorado">Pós Doc</option>
-          </select>
-          <div *ngIf="f.titulo.errors && f.titulo.touched" class="invalid-feedback">
-            <div *ngIf="f.titulo.errors.required">Título é obrigatório</div>
-          </div>
+        <tabset>
+          <tab class="border border-top-0 p-3">
+            <ng-template tabHeading>
+              <i class="fa fa-address-card mr-2"></i><span>Perfil</span>
+            </ng-template>
+
+            <app-perfil-detalhe (changeFormValue)="setFormValue($event)"></app-perfil-detalhe>
+          </tab>
+          <tab *ngIf="ehPalestrante" class="border border-top-0 p-3">
+            <ng-template tabHeading>
+              <i class="fa fa-user mr-2"></i><span>Palestrante</span>
+            </ng-template>
+            <div class="form-group">
+              <h3 class="border-bottom">Palestrante</h3>
+            </div>
+
+            <app-palestrante-detalhe></app-palestrante-detalhe>
+          </tab>
+          <tab *ngIf="ehPalestrante" class="border border-top-0 p-3">
+            <ng-template tabHeading>
+              <i class="fa fa-share-square mr-2"></i><span>Rede Social</span>
+            </ng-template>
+            <div class="form-group">
+              <h3 class="border-bottom">Rede Social</h3>
+            </div>
+
+            <app-redesSociais></app-redesSociais>
+          </tab>
+        </tabset>
         </div>
-        <div class="form-group col-sm-5">
-          <label>Primeiro Nome</label>
-          <input type="text" formControlName="primeiroNome" class="form-control"
-          [ngClass]="{ 'is-invalid': f.primeiroNome.errors && f.primeiroNome.touched }" />
-          <div *ngIf="f.primeiroNome.errors && f.primeiroNome.touched" class="invalid-feedback">
-            <div *ngIf="f.primeiroNome.errors.required">Primeiro nome é obrigatório</div>
-          </div>
-        </div>
-        <div class="form-group col-sm-5">
-          <label>Último nome</label>
-          <input type="text" formControlName="ultimoNome" class="form-control"
-          [ngClass]="{ 'is-invalid': f.ultimoNome.errors && f.ultimoNome.touched }" />
-          <div *ngIf="f.ultimoNome.errors && f.ultimoNome.touched" class="invalid-feedback">
-            <div *ngIf="f.ultimoNome.errors.required">Último nome é obrigatório</div>
-          </div>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group col-sm-5">
-          <label>E-mail</label>
-          <input type="text" formControlName="email" class="form-control"
-          [ngClass]="{ 'is-invalid': f.email.errors && f.email.touched }" />
-          <div *ngIf="f.email.errors && f.email.touched" class="invalid-feedback">
-            <div *ngIf="f.email.errors.required">e-mail é obrigatório</div>
-            <div *ngIf="f.email.errors.email">e-mail precisa ser um endereço válido.</div>
-          </div>
-        </div>
-        <div class="form-group col-sm-4">
-          <label>Telefone</label>
-          <input type="text" formControlName="phoneNumber" class="form-control"
-          [ngClass]="{ 'is-invalid': f.phoneNumber.errors && f.phoneNumber.touched }" />
-          <div *ngIf="f.phoneNumber.errors && f.phoneNumber.touched" class="invalid-feedback">
-            <div *ngIf="f.phoneNumber.errors.required">Telefone é obrigatório</div>
-          </div>
-        </div>
-        <div class="form-group col-sm">
-          <label>Função</label>
-          <select formControlName="funcao" class="form-control"
-          [ngClass]="{ 'is-invalid': f.funcao.errors && f.funcao.touched }">
-          <option value="NaoInformado">Não Informado</option>
-          <option value="Participante">Participante</option>
-          <option value="Palestrante">Palestrante</option>
-        </select>
-        <div *ngIf="f.funcao.errors && f.funcao.touched" class="invalid-feedback">
-          <div *ngIf="f.funcao.errors.required">função é obrigatório é obrigatório</div>
-        </div>
-      </div>
-      <div class="form-group col-12">
-        <label>Descrição</label>
-        <input type="text" formControlName="descricao" class="form-control"
-        [ngClass]="{ 'is-invalid': f.descricao.errors && f.descricao.touched }" />
-        <div *ngIf="f.descricao.errors && f.descricao.touched" class="invalid-feedback">
-          <div *ngIf="f.descricao.errors.required">Descrição é obrigatório</div>
-        </div>
-      </div>
-    </div>
-    <div>
-      <h3 class="pt-3 border-bottom">Mudar Senha</h3>
-      <p>Caso mude de senha, preencha os campos abaixo:</p>
-    </div>
-    <div class="form-row">
-      <div class="form-group col-sm">
-        <label>Senha</label>
-        <input type="password" formControlName="password" class="form-control"
-        [ngClass]="{ 'is-invalid': f.password.errors && f.password.touched }" />
-        <div *ngIf="f.password.errors && f.password.touched" class="invalid-feedback">
-          <div *ngIf="f.password.errors.required">Senha é obrigatório</div>
-          <div *ngIf="f.password.errors.minlength">Senha precisa ter pelo menos 6 caracteres</div>
-        </div>
-      </div>
-      <div class="form-group col-sm">
-        <label>Confirmar Senha</label>
-        <input type="password" formControlName="confirmePassword" class="form-control"
-        [ngClass]="{ 'is-invalid': f.confirmePassword.errors && f.confirmePassword.touched }" />
-        <div *ngIf="f.confirmePassword.errors && f.confirmePassword.touched" class="invalid-feedback">
-          <div *ngIf="f.confirmePassword.errors.required">Confirmação de senha é Obrigatório</div>
-          <div *ngIf="f.confirmePassword.errors.mustMatch">Repedir a senha é obrigatório.</div>
-        </div>
-      </div>
-    </div>
-  </div>
 </div>
-<div class="card-footer">
-  <div class="d-flex">
-    <button (click)="resetForm($event)" class="btn btn-outline-secondary mr-auto border">
-      Cancelar Alteração
-    </button>
-    <button class="btn btn-success" type="submit">
-      Salvar Alteração
-    </button>
-  </div>
-</div>
-</form>
+
 </div>

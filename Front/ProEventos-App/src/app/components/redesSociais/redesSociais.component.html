@@ -1,0 +1,60 @@
+<p>Clique em Rede Social para adicionar e preencher novas Redes Sociais</p>
+<div class="form-row p-1">
+  <div [formGroup]="formRS" class="col">
+    <div formArrayName="redesSociais" *ngFor="let redeSocial of redesSociais.controls; let i=index">
+      <fieldset [formGroupName]="i" class="form-group">
+        <legend class="d-flex justify-content-between capitalize">
+          {{ retornaTitulo(redesSociais.get(i+'.nome').value) }}
+          <button class="btn btn-sm btn-warning mb-1" (click)="removerRedeSocial(template, i)">remove</button>
+        </legend>
+        <div class="row">
+          <div class="form-group col-md-4">
+            <label>Nome</label>
+            <select class="form-control" [ngClass]="cssValidator(redesSociais.get(i+'.nome'))" formControlName="nome">
+              <option value="">Selecione</option>
+              <option value="fab fa-youtube">Youtube</option>
+              <option value="fab fa-instagram">Instagram</option>
+              <option value="fab fa-facebook">Facebook</option>
+              <option value="fab fa-twitter">Twitter</option>
+              <option value="fab fa-google">Google</option>
+              <option value="fab fa-linkedin">Linkedin</option>
+              <option value="fab fa-pinterest">Pinterest</option>
+              <option value="fab fa-whatsapp">Whatsapp</option>
+              <option value="fab fa-telegram">Telegram</option>
+              <option value="fab fa-skype">Skype</option>
+              <option value="fab fa-vimeo">Vimeo</option>
+            </select>
+          </div>
+          <div class="form-group col-md-8">
+            <label>Link</label>
+            <input type="text" prefix="http://" mask="" [ngClass]="cssValidator(redesSociais.get(i+'.url'))"
+              formControlName="url" class="form-control" placeholder="URL">
+          </div>
+        </div>
+      </fieldset>
+    </div>
+    <button (click)="adicionarRedeSocial()" class="d-flex btn btn-outline-primary">
+      <i class="fa fa-plus-circle my-1"></i>
+      <b class="ml-1">Rede Social</b>
+    </button>
+  </div>
+</div>
+
+<div class="card-footer">
+  <div class="d-flex">
+    <button class="btn btn-outline-secondary mr-auto border">
+      Cancelar Alteração
+    </button>
+    <button [disabled]="!formRS.controls.redesSociais.valid" (click)="salvarRedesSociais()" class="btn btn-success">
+      Salvar Redes Sociais
+    </button>
+  </div>
+</div>
+
+<ng-template #template>
+  <div class="modal-body text-center">
+    <p>Tem certeza que quer deletar {{this.redeSocialAtual.nome}}?</p>
+    <button type="button" class="btn btn-default" (click)="confirmDeleteRedeSocial()">Sim</button>
+    <button type="button" class="btn btn-primary" (click)="declineDeleteRedeSocial()">Não</button>
+  </div>
+</ng-template>

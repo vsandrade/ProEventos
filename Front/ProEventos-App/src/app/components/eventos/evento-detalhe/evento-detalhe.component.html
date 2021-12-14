@@ -172,6 +172,22 @@
       </div>
     </div>
   </div>
+
+  <div class="card rounded shadow-sm mt-3" *ngIf="modoEditar">
+    <div class="p-3">
+      <div class="d-flex border-bottom">
+        <h2 class="mr-auto">
+          Redes Sociais do Evento
+        </h2>
+        <h2>
+          <i class="fas fa-share-square"></i>
+        </h2>
+      </div>
+      <app-redesSociais [eventoId]="eventoId"></app-redesSociais>
+    </div>
+  </div>
+
+
 </div>
 <div class="col-md-4" *ngIf="modoEditar">
   <div [formGroup]="form" class="card-evento-view shadow-sm">
