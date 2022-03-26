@@ -49,7 +49,7 @@ There're not settings exactly, only files to guide you understand a little bit m
 
 ## Questions
 
-Having a problem getting something to work or want to know why I setup something in a certain way? Ping me on Twitter [@ozirispc](https://twitter.com/programadament) or Message on [Facebook](http://facebook.com/programadamente)
+Having a problem getting something to work or want to know why I setup something in a certain way? Ping me on Twitter [@programadament](https://twitter.com/programadament) or Message on [Facebook](http://facebook.com/programadamente)
 
 
 ## Donation
