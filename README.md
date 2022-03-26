@@ -1,4 +1,4 @@
-## ProEventos - Curso da Udemy
+### ProEventos - Curso da Udemy
 
 # Seja Full-Stack com .NET Web API e Angular + EF Core - V2.0 - [Course](http://www.udemy.com/course/angular-dotnetcore-efcore/?referralCode=F44264DF39DEEE45EC50).
 
@@ -31,8 +31,8 @@ If you want to see this link course, really in action [original site](https://ww
 ## Basic Setup
 
 1. [Install Node.js](https://nodejs.org/)
-1. [Install .NET Core 2.2](https://dotnet.microsoft.com/download/)
-2. Fork the [ProAgil](https://github.com/vsandrade/ProAgil/fork)
+1. [Install .NET Core 5](https://dotnet.microsoft.com/download/)
+2. Fork the [ProEventos](https://github.com/vsandrade/ProEventos/fork)
 3. Clone the repo you just forked.
 
 ## User Settings
@@ -49,12 +49,13 @@ There're not settings exactly, only files to guide you understand a little bit m
 
 ## Questions
 
-Having a problem getting something to work or want to know why I setup something in a certain way? Ping me on Twitter [@programadament](https://twitter.com/programadament) or Message on [Facebook](http://facebook.com/programadamente)
+Having a problem getting something to work or want to know why I setup something in a certain way? Ping me on Twitter [@programadament](https://twitter.com/programadament) or Message on [Facebook](http://facebook.com/ozirispc)
 
 
 ## Donation
 
 If you liked my work, [subscribe on youtube](https://www.youtube.com/user/ozirispc?sub_confirmation=1)
+Or buy the course using [this link](http://www.udemy.com/course/angular-dotnetcore-efcore/?referralCode=F44264DF39DEEE45EC50).
 
 ## License
 
