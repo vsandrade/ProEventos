@@ -1,27 +1,64 @@
-# ProEventos - Curso da Udemy
+## ProEventos - Curso da Udemy
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.0.
+# Seja Full-Stack com .NET Web API e Angular + EF Core - V2.0 - [Course](http://www.udemy.com/course/angular-dotnetcore-efcore/?referralCode=F44264DF39DEEE45EC50).
 
-## Development server
+This is all of the files for our Course about Angular, WebAPI and More
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+The Summary is:
 
-## Code scaffolding
+01. Introdução ao Curso
+02. NET Core 5
+03. EF Core 5 - Introdução
+04. Angular - Introdução
+05. Angular - Interpolação, Diretivas e Binding
+06. .NET 5 - Múltiplas Camadas
+07. Angular - Organizar, Rota, Alertas e Mais
+08. Angular - Reactive Forms e Novo Layout
+09. DTOs & Data Annotations
+10. Angular - Registrando Evento
+11. Angular e .NET - Eventos e Lotes
+12. Upload de Imagens
+13. Asp .NET Core Identity - Autenticar e Autorizar - (TOKEN - JWT)
+14. Angular + .NET Core Identity + JWT
+15. Paginação e Filtros
+16. Palestrantes e Redes Sociais - Backend
+17. Palestrantes e Redes Sociais - Frontend
+18. Palestrantes e Eventos (2022)
+19. Docker + MySQL (2022)  
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+If you want to see this link course, really in action [original site](https://www.programadamente.com).
 
-## Build
+## Basic Setup
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+1. [Install Node.js](https://nodejs.org/)
+1. [Install .NET Core 2.2](https://dotnet.microsoft.com/download/)
+2. Fork the [ProAgil](https://github.com/vsandrade/ProAgil/fork)
+3. Clone the repo you just forked.
 
-## Running unit tests
+## User Settings
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```
+# Site settings
+title: Vinícius de Andrade - Professor and Full-stack Developer
+description: A Course about [Angular, .NET Core and EF Core]
+baseurl: "" # the subpath of your site, e.g. /blog/ or empty.
 
-## Running end-to-end tests
+# User settings
+There're not settings exactly, only files to guide you understand a little bit more about Angular, WebAPI and More
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+## Questions
 
-## Further help
+Having a problem getting something to work or want to know why I setup something in a certain way? Ping me on Twitter [@ozirispc](https://twitter.com/programadament) or Message on [Facebook](http://facebook.com/programadamente)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Donation
+
+If you liked my work, [subscribe on youtube](https://www.youtube.com/user/ozirispc?sub_confirmation=1)
+
+## License
+
+This theme is free and open source software, distributed under the The MIT License. So feel free to use this files on your site without linking back to me or using a disclaimer.
+
+If you’d like to give me credit somewhere on your blog or tweet a shout out to [@ozirispc](https://twitter.com/ozirispc), that would be pretty sweet.
+
