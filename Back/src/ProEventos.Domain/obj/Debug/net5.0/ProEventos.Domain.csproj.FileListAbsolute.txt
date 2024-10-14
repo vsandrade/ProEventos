@@ -1,0 +1,12 @@
+/workspaces/ProEventos/Back/src/ProEventos.Domain/bin/Debug/net5.0/ProEventos.Domain.deps.json
+/workspaces/ProEventos/Back/src/ProEventos.Domain/bin/Debug/net5.0/ProEventos.Domain.dll
+/workspaces/ProEventos/Back/src/ProEventos.Domain/bin/Debug/net5.0/ref/ProEventos.Domain.dll
+/workspaces/ProEventos/Back/src/ProEventos.Domain/bin/Debug/net5.0/ProEventos.Domain.pdb
+/workspaces/ProEventos/Back/src/ProEventos.Domain/obj/Debug/net5.0/ProEventos.Domain.csproj.AssemblyReference.cache
+/workspaces/ProEventos/Back/src/ProEventos.Domain/obj/Debug/net5.0/ProEventos.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/workspaces/ProEventos/Back/src/ProEventos.Domain/obj/Debug/net5.0/ProEventos.Domain.AssemblyInfoInputs.cache
+/workspaces/ProEventos/Back/src/ProEventos.Domain/obj/Debug/net5.0/ProEventos.Domain.AssemblyInfo.cs
+/workspaces/ProEventos/Back/src/ProEventos.Domain/obj/Debug/net5.0/ProEventos.Domain.csproj.CoreCompileInputs.cache
+/workspaces/ProEventos/Back/src/ProEventos.Domain/obj/Debug/net5.0/ProEventos.Domain.dll
+/workspaces/ProEventos/Back/src/ProEventos.Domain/obj/Debug/net5.0/ref/ProEventos.Domain.dll
+/workspaces/ProEventos/Back/src/ProEventos.Domain/obj/Debug/net5.0/ProEventos.Domain.pdb
